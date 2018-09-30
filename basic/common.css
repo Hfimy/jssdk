@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 移动端隐藏scroll滚动条 */
+/* 
+  ::-webkit-scrollbar {
+      display: none !important;
+    } 
+*/
+
+.hide {
+  display: none !important;
+}

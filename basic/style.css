@@ -1,0 +1,84 @@
+@import './common.css';
+
+html {
+  font-size: calc(100vw / 37.5);
+  font-family: initial;
+  max-width: 750px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+#toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 0.8rem 2rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.6rem;
+
+  opacity: 0;
+  animation: toast 3s;
+}
+@keyframes toast {
+  0% {
+    opacity: 0;
+  }
+
+  13% {
+    opacity: 1;
+  }
+
+  87% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+#loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.6rem;
+
+  width: 7rem;
+  height: 7rem;
+  /* line-height: 7rem; */
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+#loading > img {
+  margin-top: 1.8rem;
+}
+#loadingTitle {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+#maskLayer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  opacity: 0;
+  /* z-index: 998; */
+}
