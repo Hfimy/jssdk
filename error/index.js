@@ -57,3 +57,5 @@ function formatErrMessage(error) {
   }
   return title;
 }
+
+export { message, messageAsync };
