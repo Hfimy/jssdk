@@ -28,8 +28,7 @@ function messageAsync(msg = defaultErrPrompt, seconds = 3, cb) {
 
 function formatErrMessage(error) {
   if (typeof error === 'object') {
-    // 如果error由throw抛出，则识别为数据解析异常
-    return '数据解析异常';
+    return error.msg || '数据解析异常';
   }
 
   let err = 0; // 默认值
@@ -40,13 +39,6 @@ function formatErrMessage(error) {
   }
 
   switch (err) {
-    // ret非0 服务异常 提示errMsg||defaultErrPrompt
-    case 0:
-      title = defaultErrPrompt;
-      break;
-    case 1:
-      title = '服务异常';
-      break;
     case 4:
       title = '客户端异常';
       break;
@@ -55,6 +47,9 @@ function formatErrMessage(error) {
       break;
     case 6:
       title = '请求超时';
+      break;
+    default:
+      title = defaultErrPrompt;
       break;
   }
   return title;
@@ -116,6 +111,36 @@ function hideMaskLayer() {
   const maskLayer = document.getElementById('maskLayer');
   if (!maskLayer) return;
   maskLayer.classList.add('hide');
+}
+
+function showModal(id) {
+  const layer = document.getElementById('layer');
+  const modal = document.getElementById(id);
+  layer.classList.remove('hide');
+  modal.classList.remove('hide');
+}
+function hideModal(id) {
+  const layer = document.getElementById('layer');
+  const modal = document.getElementById(id);
+  layer.classList.add('hide');
+  modal.classList.add('hide');
+}
+
+function scrollToTop(cb) {
+  let currentPosition;
+  const speed = 8;
+  const timer = setInterval(() => {
+    currentPosition =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    currentPosition -= speed;
+    if (currentPosition > 0) {
+      window.scrollTo(0, currentPosition);
+      return;
+    }
+    clearInterval(timer);
+    window.scrollTo(0, 0);
+    cb && cb();
+  });
 }
 
 function initSDK() {
